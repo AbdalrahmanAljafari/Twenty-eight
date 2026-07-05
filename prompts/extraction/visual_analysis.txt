@@ -1,0 +1,17 @@
+Stage 1: visual extraction instruction
+Before editing/generating, analyze the uploaded face image and extract only visible attributes.
+Extract:
+1. Facial identity anchors: face shape, eye-nose-mouth proportions, eye shape, eye color, brow shape,
+nose shape, lip shape, jawline, chin, expression.
+2. Skin: visible skin tone family, undertone, shade variation, pores, freckles, moles, scars, wrinkles, texture,
+shine, shadows, color cast.
+3. Hair: visible hair type, curl/wave pattern, color, highlights, density, length, volume, parting, styling, and
+whether it covers facial landmarks.
+4. Makeup: visible makeup level, lipstick, eye makeup, foundation, contour, blush, whether it appears
+heavy or natural.
+5. Accessories: glasses, earrings, piercings, headwear, hair clips, necklaces, or none.
+6. Pose and crop: head angle, tilt, gaze, facial alignment, shoulder visibility, image distance.
+7. Background and lighting: background type, lighting direction, harshness, shadows, artifacts,
+compression.
+Do not infer hidden facts such as ethnicity, nationality, exact age, or identity name. Use only visible
+appearance unless the user provides more information.

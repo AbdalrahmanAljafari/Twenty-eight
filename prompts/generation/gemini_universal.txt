@@ -1,0 +1,48 @@
+The Universal Prompt For Gemini 3.1 Pro (June 2026):
+Universal Female ID-Preserving Portrait Prompt (Enhanced Fidelity)
+I. Core Identity and Technical Standardization
+Subject: A hyper-realistic, high-resolution 2D portrait photograph of a female, tightly framed from head to shoulders, ensuring the full head structure, including all
+hairstyle components, is visible, even if the reference image is cropped at the top or sides.
+Goal: This output must be a rigid, biometric-preserving digital twin of the face and full head structure provided in the input image. Use high-fidelity, logical in-
+painting to complete and display the entire head and hairstyle seamlessly.
+Pose: Strictly frontal, perfectly symmetrical. The head is centered with zero tilt. The eyes are at the same level and directed straight at the camera. Lips are aligned;
+the chin is vertically straight.
+Expression: Calm and strictly neutral (no smile, no frown).
+Lighting: Even, diffused, shadowless studio lighting (as if from softboxes), ensuring all facial contours and textures are equally visible without harsh specular
+highlights or shadows under the nose or neck.
+Background: Clean, seamless, pure white ( #ffffff ).
+Artifact Removal: Remove all digital grain, compression artifacts (JPEG blocking), and correct color casts (White Balance normalization) based on a gray-world
+assumption.
+II. Specific Feature Mapping (Placeholder Directives)
+The AI must map the following features from the input image with high fidelity:
+[EYES]: Preserve the exact unique eye shape, size, inter-ocular distance, and precise iris color/texture seen in the input image. Crucially, match the specific color, not
+just a generic type (e.g., if a deep amber, preserve deep amber, do not drift to generic light hazel). Zero tolerance for color shift.
+[SKIN]: Retain the natural, unadorned skin tone profile and skin texture. Digital smoothing is forbidden. Preserve only the unique aesthetic markers present in the
+reference. CRITICAL: Do not add pores, freckles, or moles if they are not present in the reference. Texture fidelity must be a direct match.
+[FACIAL TOPOLOGY]: Maintain the precise geometrical ratios and distances between facial landmarks (Eye-to-Nose, Nose-to-Mouth, Mouth-to-Chin).
+[MAKEUP]: Analyze the type, color, and placement of the makeup in the reference. If the subject has natural skin, the output must have natural skin. If the subject is
+wearing a specific color of lipstick or defined eyeliner, replicate that makeup style and color with high fidelity, but ensure it looks refined, seamlessly blended, and
+adapted to appear natural and integrated with the skin texture. The system must prioritize making the application look smooth and natural, not heavy, caked, or
+artificially distinct layers, regardless of the perceived application style in the reference.
+[HAIR]: Replicate the hair type, texture, and color from the reference with perfect accuracy. The styling should be polished to frame the face and head neatly,
+removing random flyaways or stray strands. Critically, if the reference image is cropped such that a hairstyle (like a bun or crown) is cut off, the AI must logically
+and seamlessly in-paint and complete the entire hairstyle structure, ensuring the final output shows the full head and hairstyle without cropping at the top.
+III. Acceptance & Rejection Scope (Safety Controls)
+ACCEPTANCE SCOPE (Authorized to Modify or Replicate):
+Polishing: Standard studio retouching is authorized to remove temporary blemishes (pimples) or smooth messy hair strands if they do not affect key identity
+markers.
+Symmetrization: Minor pose corrections to bring a slight angle (e.g., 5-degree tilt) into a perfect 0-degree frontal symmetry are authorized, provided facial
+landmarks are not distorted.
+Comprehensive Framing: Authorizes logical in-painting to complete any cropped features (especially cropped-out hair buns, crowns, and heads) to ensure a
+complete head-and-shoulders frame.
+Refined Makeup Application: Authorizes making the application of makeup look seamless and refined while strictly keeping the original color and style.
+REJECTION SCOPE (Actions to Avoid or Triggers to Reject Input):
+Strict Occlusion (Reject): Reject any input image where more than 15% of the primary facial landmarks (eyes, nose, mouth) are obscured by hair, hands, or other
+objects.
+Angle Limitation (Reject): Reject any input image where the pose is more than a 3/4 view. If the face is not significantly frontal, do not generate.
+Accessory Removal (Avoid/Reject): Do not generate eyewear, headwear, large piercings, or heavy jewelry (except small, standard earrings), even if they are in the
+input image. If these items are key identifiers (e.g., a religious head covering that must be kept), the user must explicitly instruct retention, overriding this clause.
+Gender (Check): Verify that the input image is a female face.
+Resolution (Reject): Reject any input image with a native resolution below 512x512 pixels.
+Drifting Details (Reject): Reject any output that generates details (pores, moles, freckles, new eye color) not found in the reference, or fails to in-paint a missing head
+structure. Run a "Sanity Check" iterative, recursive feedback loop comparison against the reference to ensure identity integrity.

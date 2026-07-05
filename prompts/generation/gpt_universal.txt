@@ -1,0 +1,154 @@
+Create a natural, realistic, high-fidelity head-and-shoulders portrait of the same female subject from the uploaded
+face image.
+FIRST: VISUAL ANALYSIS
+Before generating, visually analyze the uploaded image and extract only visible attributes:
+- facial proportions and facial geometry
+- face shape
+- eye shape, eye size, eye color, and gaze
+- eyebrow shape, thickness, and placement
+- nose shape and alignment
+- lip shape, lip fullness, and visible lipstick/makeup level
+- jawline and chin shape
+- skin tone family, undertone, natural shade variation, and visible texture
+- visible aesthetic markers such as pores, freckles, moles, scars, fine lines, or birthmarks
+- hair type, hair color, hair texture, hair density, hair length, hairline, hairstyle, and whether any part of the hair is cropped,
+truncated, or incomplete at the image boundaries
+- accessories if visible
+- pose, head angle, tilt, crop, background, lighting, and visible artifacts
+Use only visible appearance. Do not infer hidden facts such as identity name, nationality, ethnicity, or exact age.
+IDENTITY PRESERVATION
+Use the uploaded image as the strict identity reference.
+Preserve the same person with high fidelity:
+- same face shape
+- same eye-nose-mouth proportions
+- same eyes, brows, nose, lips, jawline, chin
+- same skin tone family and natural tone variation
+- same visible skin details and aesthetic markers
+- same hair identity unless a separate target style is provided
+The result must clearly look like the same woman, not a different person.
+HAIR PRESERVATION + HAIR COMPLETION / IN-PAINTING
+Preserve the subject's original hair identity:
+- same hair type
+- same hair color
+- same texture
+- same density
+- same general hairstyle
+- same apparent length and silhouette unless explicitly changed
+If the uploaded image contains cropped, cut-off, incomplete, truncated, or visually broken hair at the top, sides, or edges of the
+frame, reconstruct and complete the missing hair naturally.
+In-paint and extend the missing hair so the hairstyle looks whole, continuous, anatomically believable, and visually finished.
+Preserve the natural hairline and hair volume.
+Do not leave broken hair edges, flat cutoffs, missing top sections, incomplete bun shapes, or abrupt crop artifacts.
+Hair may frame the outer sides of the face naturally, but it must not hide key facial landmarks unless the source clearly
+requires it.
+Keep the forehead, eyebrows, eyes, nose, lips, cheeks, jawline, and chin readable and visually coherent.
+POSE + GEOMETRIC CORRECTION
+Correct the portrait into a clean, standard head-and-shoulders pose.
+Required pose rules:
+- front-facing portrait
+- upright head position
+- eyes at the same level
+- no unwanted tilt
+- lips aligned
+- chin centered vertically
+- shoulders balanced and visually even
+- natural direct eye contact
+- neutral-soft expression
+- clean centered framing
+If the uploaded image has a hand pose, angled pose, slight rotation, asymmetrical framing, or beauty-shot pose, normalize it
+into a more standard portrait pose while preserving identity and realism.
+Do not leave the final portrait in a tilted, fashion-angled, or off-axis pose unless specifically requested.
+SKIN + MAKEUP HANDLING
+Handle makeup based on what is visible:
+- if makeup is heavy, artificial, or distracting, soften it into a polished natural-beauty look
+- if makeup is already natural, preserve it softly
+- keep realistic skin texture and pores
+- preserve natural tonal transitions across the face
+- avoid plastic skin, over-smoothing, excessive glamour, harsh contour, or oily shine
+If lipstick is overly strong or distracting, reduce it to a natural flattering tone unless the
+user explicitly asks to preserve the original bold makeup.
+ACCESSORIES
+Do not add new accessories.
+If glasses, heavy jewelry, or distracting accessories are visible and the user wants a clean
+portrait, remove them.
+Otherwise keep the portrait minimal and clean.
+IMAGE QUALITY NORMALIZATION
+Repair and improve source-image issues while preserving identity:
+- compression artifacts
+- stitching artifacts
+- blur
+- noise
+- color cast
+- harsh shadows
+- excessive highlights
+- lighting imbalance
+- cropped edge defects
+- incomplete hair boundaries
+- small visual distortions
+BACKGROUND: HARD WHITE-WALL CONSTRAINT
+The background must be a plain matte white indoor wall.
+It must appear visually pure white, clean, and uniform.
+Hard constraints:
+- no gray background
+- no beige background
+- no cream background
+- no warm neutral background
+- no off-white cast
+- no paper seamless studio look
+- no visible texture
+- no gradient
+- no environmental elements
+- no decorative objects
+Allow only very soft minimal natural shadow if needed, but the overall background
+must read clearly as a plain white wall.
+LIGHTING
+Use soft surrounding diffused studio lighting with neutral white balance.
+Lighting must be even and flattering.
+Remove harsh directional shadows and excessive shine while preserving natural skin
+depth.
+Avoid dramatic editorial lighting unless explicitly requested.
+FRAMING
+Create a standard head-and-shoulders portrait:
+- include full head
+- include completed hair shape
+- include neck
+- include upper shoulders / collarbone area
+- do not crop too tightly
+- do not cut off the hairstyle
+STYLE GOAL
+The result should be suitable for fashion or digital-platform use:
+natural, polished, clean, attractive, realistic, and not overly formal.
+It should look like the subject at her best while remaining faithful to
+her real visible identity.
+FINAL SANITY CHECK BEFORE OUTPUT
+Reject and correct outputs if any of the following happen:
+- the face looks like a different person
+- facial proportions drift too far from the source
+- the pose remains tilted, rotated, or asymmetrical
+- the eyes are not level
+- the shoulders are uneven without reason
+- the background is gray, beige, cream, off-white, or gradient
+- the hairstyle is incomplete
+- hair ends are missing or cut off
+- the bun, top hair, or outer hair silhouette is broken or unfinished
+- facial landmarks are hidden unnecessarily
+- the skin becomes plastic or over-retouched
+- the crop is too close
+- the portrait looks artificial instead of natural and realistic
+Final requirement:
+Deliver a realistic, identity-preserving, geometrically corrected, fully
+completed head-and-shoulders portrait of the same woman, with a
+finished hairstyle, corrected standard pose, and a true plain white wall
+background.
+Optional stronger add-on for difficult cases
+STRICT FAILURE PREVENTION:
+This task includes portrait correction, background enforcement, and
+visual completion.
+Prioritize in this order:
+1. preserve identity
+2. correct pose into standard upright frontal portrait
+3. reconstruct any missing or cropped hair regions
+4. enforce a true plain white wall background
+5. preserve realism and natural beauty
+Do not output a result until all 5 conditions are satisfied together.
+ChatGPT Final Universal Prompt

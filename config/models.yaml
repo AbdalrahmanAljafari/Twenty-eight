@@ -1,0 +1,14 @@
+# Provider profiles: one stack (extraction + generation + validation) per provider.
+# Model IDs are set in .env; prompt paths are fixed per provider.
+
+providers:
+  gemini:
+    extraction_prompt: prompts/extraction/visual_analysis.txt
+    generation_prompt: prompts/generation/gemini_universal.txt
+
+  gpt:
+    extraction_prompt: prompts/extraction/visual_analysis.txt
+    generation_prompt: prompts/generation/gpt_universal.txt
+
+pipeline:
+  retry_max_attempts: 3
