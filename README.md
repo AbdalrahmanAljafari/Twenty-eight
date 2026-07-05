@@ -1,6 +1,6 @@
 # Twenty-eight
 
-Face and body virtual try-on pipeline: FastAPI backend + Next.js frontend.
+The new generation of virtual try-on
 
 ## Setup
 
