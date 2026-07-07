@@ -12,3 +12,4 @@ providers:
 
 pipeline:
   retry_max_attempts: 3
+  input_validation_prompt: prompts/validation/face_input_check.txt

@@ -5,9 +5,9 @@ import re
 
 from clients.openrouter import OpenRouterClient
 from config.settings import PipelineProfile
-from schemas.responses import SanityCheckResult
+from schemas.responses import PortraitQAResult
 
-SANITY_CHECK_PROMPT = """
+PORTRAIT_QA_PROMPT = """
 The first image is the original uploaded face. The second image is the generated portrait.
 
 Compare the generated portrait against the original uploaded face.
@@ -29,25 +29,25 @@ Mark pass=true only if score is 8 or higher and there are no critical identity f
 """
 
 
-async def run_sanity_check(
+async def run_portrait_qa(
     source_image: bytes | str,
     generated_image: bytes,
     profile: PipelineProfile,
     client: OpenRouterClient | None = None,
-) -> SanityCheckResult:
+) -> PortraitQAResult:
     openrouter = client or OpenRouterClient()
 
     raw_text = await openrouter.analyze_image(
         model=profile.validation_model,
-        prompt=SANITY_CHECK_PROMPT,
+        prompt=PORTRAIT_QA_PROMPT,
         image_source=generated_image,
         reference_image_source=source_image,
     )
 
-    return parse_sanity_result(raw_text)
+    return parse_portrait_qa_result(raw_text)
 
 
-def parse_sanity_result(text: str) -> SanityCheckResult:
+def parse_portrait_qa_result(text: str) -> PortraitQAResult:
     payload = text.strip()
 
     if payload.startswith("```"):
@@ -59,10 +59,10 @@ def parse_sanity_result(text: str) -> SanityCheckResult:
     except json.JSONDecodeError:
         match = re.search(r"\{.*\}", payload, flags=re.DOTALL)
         if not match:
-            return SanityCheckResult(
+            return PortraitQAResult(
                 passed=False,
                 score=0,
-                failures=["Could not parse sanity check response"],
+                failures=["Could not parse portrait QA response"],
                 corrections=["Regenerate with stricter identity preservation"],
                 raw_text=text,
             )
@@ -76,7 +76,7 @@ def parse_sanity_result(text: str) -> SanityCheckResult:
     if score >= 8 and not failures:
         passed = True
 
-    return SanityCheckResult(
+    return PortraitQAResult(
         passed=passed,
         score=score,
         failures=failures,

@@ -1,6 +1,6 @@
 export type Provider = "gemini" | "gpt";
 
-export interface SanityCheckResult {
+export interface PortraitQAResult {
   passed: boolean;
   score: number;
   failures: string[];
@@ -15,7 +15,7 @@ export interface GenerateFaceResponse {
   source_path: string;
   result_path: string;
   extracted: Record<string, unknown>;
-  sanity_check: SanityCheckResult;
+  portrait_qa: PortraitQAResult;
   pipeline: Record<string, string>;
   attempts: number;
 }

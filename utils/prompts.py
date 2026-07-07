@@ -3,7 +3,9 @@ from __future__ import annotations
 from functools import lru_cache
 from pathlib import Path
 
-from config.settings import PipelineProfile, PROJECT_ROOT, ProviderProfile, get_settings
+import yaml
+
+from config.settings import MODELS_YAML_PATH, PipelineProfile, PROJECT_ROOT, ProviderProfile
 
 
 def resolve_prompt_path(path: Path | str) -> Path:
@@ -31,6 +33,17 @@ def load_extraction_prompt(profile: PipelineProfile | ProviderProfile) -> str:
 
 def load_generation_prompt(profile: PipelineProfile | ProviderProfile) -> str:
     return load_prompt(profile.generation_prompt)
+
+
+@lru_cache(maxsize=1)
+def load_input_validation_prompt() -> str:
+    with MODELS_YAML_PATH.open(encoding="utf-8") as file:
+        config = yaml.safe_load(file)
+    prompt_path = config.get("pipeline", {}).get(
+        "input_validation_prompt",
+        "prompts/validation/face_input_check.txt",
+    )
+    return load_prompt(prompt_path)
 
 
 def build_generation_prompt(

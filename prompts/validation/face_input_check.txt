@@ -1,0 +1,42 @@
+You are validating a cropped face image before a portrait-generation pipeline runs.
+
+The image is a 512x512 pixel head-and-shoulders crop intended for a female face portrait workflow.
+
+Evaluate whether this image is suitable to continue. Use only what is visibly present in the image.
+
+Check:
+1. Face present: a clear human female face is visible.
+2. Frontal pose: the face is mostly frontal, not a strong profile and not beyond a 3/4 view.
+3. Landmark visibility: eyes, nose, and mouth are visible enough to use as identity anchors.
+4. Occlusion: no more than about 15% of the primary facial landmarks are obscured by hair, hands, objects, or accessories.
+5. Framing: the face is reasonably centered and not cut off in a way that hides key landmarks.
+6. Lighting: lighting is usable; reject only extreme darkness, blown highlights, or unusable glare.
+7. Quality: reject only if the image is too blurry, corrupted, or too low-detail to analyze.
+
+Warnings only (do not fail for these alone):
+- heavy makeup
+- visible glasses, jewelry, or headwear
+- mild tilt or non-ideal crop
+
+Return JSON only:
+{
+  "pass": true,
+  "score": 9,
+  "failures": [],
+  "warnings": [],
+  "checks": {
+    "face_present": true,
+    "is_female_face": true,
+    "is_frontal": true,
+    "occlusion_ok": true,
+    "landmarks_visible": true,
+    "framing_ok": true,
+    "lighting_ok": true,
+    "quality_ok": true
+  }
+}
+
+Mark pass=true only if all critical checks pass:
+face_present, is_female_face, is_frontal, occlusion_ok, landmarks_visible, framing_ok, lighting_ok, quality_ok.
+
+If any critical check fails, set pass=false and explain each failure briefly in failures.

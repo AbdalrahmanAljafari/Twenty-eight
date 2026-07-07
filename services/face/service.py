@@ -7,11 +7,11 @@ from pathlib import Path
 
 from clients.openrouter import OpenRouterClient
 from config.settings import PROJECT_ROOT, Provider, Settings, get_settings
-from schemas.responses import GenerateFaceResponse, SanityCheckResult
+from schemas.responses import GenerateFaceResponse, PortraitQAResult
 from services.face.extraction import extract_visual_attributes
 from services.face.generation import generate_portrait
+from services.face.portrait_qa import run_portrait_qa
 from services.face.prompt_builder import build_portrait_prompt
-from services.face.sanity_check import run_sanity_check
 from services.face.validation_input import validate_image_input
 from utils.image import to_data_uri
 
@@ -35,7 +35,7 @@ def save_face_output(
     portrait_bytes: bytes,
     portrait_mime: str,
     extracted: dict,
-    sanity_check: dict,
+    portrait_qa: dict,
     pipeline: dict[str, str],
     attempts: int,
     generation_prompt: str,
@@ -59,7 +59,7 @@ def save_face_output(
         "feature": FACE_OUTPUT_DIRNAME,
         "created_at": datetime.now(timezone.utc).isoformat(),
         "extracted": extracted,
-        "sanity_check": sanity_check,
+        "portrait_qa": portrait_qa,
         "pipeline": pipeline,
         "attempts": attempts,
         "files": {
@@ -98,7 +98,6 @@ class FaceService:
         generation_provider: Provider | str | None = None,
         validation_provider: Provider | str | None = None,
     ) -> GenerateFaceResponse:
-        validate_image_input(image_bytes)
         resolved_client_id = generate_client_id()
 
         profile = self.settings.get_pipeline_profile(
@@ -107,6 +106,8 @@ class FaceService:
             validation_provider=validation_provider,
         )
 
+        await validate_image_input(image_bytes, profile, client=self.client)
+
         extraction = await extract_visual_attributes(
             image_bytes,
             profile,
@@ -114,7 +115,7 @@ class FaceService:
         )
 
         correction_notes: str | None = None
-        sanity_result = SanityCheckResult(passed=False)
+        portrait_qa_result = PortraitQAResult(passed=False)
         portrait_bytes: bytes | None = None
         portrait_mime = "image/png"
         final_prompt = ""
@@ -135,15 +136,17 @@ class FaceService:
                 profile,
                 client=self.client,
             )
-            sanity_result = await run_sanity_check(
+            portrait_qa_result = await run_portrait_qa(
                 image_bytes,
                 portrait_bytes,
                 profile,
                 client=self.client,
             )
-            if sanity_result.passed:
+            if portrait_qa_result.passed:
                 break
-            correction_notes = "\n".join(sanity_result.corrections or sanity_result.failures)
+            correction_notes = "\n".join(
+                portrait_qa_result.corrections or portrait_qa_result.failures
+            )
 
         if portrait_bytes is None:
             raise RuntimeError("Portrait generation did not produce an image")
@@ -154,7 +157,7 @@ class FaceService:
             portrait_bytes=portrait_bytes,
             portrait_mime=portrait_mime,
             extracted=extraction.data,
-            sanity_check=sanity_result.model_dump(),
+            portrait_qa=portrait_qa_result.model_dump(),
             pipeline={
                 "extraction_provider": profile.extraction_provider.value,
                 "generation_provider": profile.generation_provider.value,
@@ -174,7 +177,7 @@ class FaceService:
             source_path=stored["source_path"],
             result_path=stored["result_path"],
             extracted=extraction.data,
-            sanity_check=sanity_result,
+            portrait_qa=portrait_qa_result,
             pipeline={
                 "extraction_provider": profile.extraction_provider.value,
                 "generation_provider": profile.generation_provider.value,

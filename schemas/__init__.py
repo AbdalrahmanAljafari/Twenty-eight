@@ -1,9 +1,9 @@
 from schemas.extraction import ExtractionResult, parse_extraction_json
-from schemas.responses import GenerateFaceResponse, SanityCheckResult
+from schemas.responses import GenerateFaceResponse, PortraitQAResult
 
 __all__ = [
     "ExtractionResult",
     "GenerateFaceResponse",
-    "SanityCheckResult",
+    "PortraitQAResult",
     "parse_extraction_json",
 ]
