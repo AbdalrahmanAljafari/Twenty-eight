@@ -9,6 +9,7 @@ from utils.image import (
 )
 from utils.prompts import (
     build_generation_prompt,
+    load_body_apose_prompts,
     load_extraction_prompt,
     load_generation_prompt,
     load_prompt,
@@ -19,6 +20,7 @@ __all__ = [
     "data_uri_to_bytes",
     "get_image_size",
     "guess_mime_type",
+    "load_body_apose_prompts",
     "load_extraction_prompt",
     "load_generation_prompt",
     "load_image",

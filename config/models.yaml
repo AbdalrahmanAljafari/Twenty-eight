@@ -3,13 +3,15 @@
 
 providers:
   gemini:
-    extraction_prompt: prompts/extraction/visual_analysis.txt
-    generation_prompt: prompts/generation/gemini_universal.txt
+    extraction_prompt: prompts/face/extraction/visual_analysis.txt
+    generation_prompt: prompts/face/generation/gemini_universal.txt
 
   gpt:
-    extraction_prompt: prompts/extraction/visual_analysis.txt
-    generation_prompt: prompts/generation/gpt_universal.txt
+    extraction_prompt: prompts/face/extraction/visual_analysis.txt
+    generation_prompt: prompts/face/generation/gpt_universal.txt
 
 pipeline:
   retry_max_attempts: 3
-  input_validation_prompt: prompts/validation/face_input_check.txt
+  input_validation_prompt: prompts/face/validation/face_input_check.txt
+  body_front_apose_prompt: prompts/body/front_Apose.txt
+  body_side_apose_prompt: prompts/body/side_Apose.txt

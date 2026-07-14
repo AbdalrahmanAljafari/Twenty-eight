@@ -39,8 +39,8 @@ frame, reconstruct and complete the missing hair naturally.
 In-paint and extend the missing hair so the hairstyle looks whole, continuous, anatomically believable, and visually finished.
 Preserve the natural hairline and hair volume.
 Do not leave broken hair edges, flat cutoffs, missing top sections, incomplete bun shapes, or abrupt crop artifacts.
-Hair may frame the outer sides of the face naturally, but it must not hide key facial landmarks unless the source clearly
-requires it.
+Hair may naturally frame the outside of the face, but no hair strands or locks may cover any facial features.
+The entire face must remain fully visible and unobstructed. Hair should fall beside the face or behind the ears whenever necessary, without changing the person's recognizable hairstyle.
 Keep the forehead, eyebrows, eyes, nose, lips, cheeks, jawline, and chin readable and visually coherent.
 POSE + GEOMETRIC CORRECTION
 Correct the portrait into a clean, standard head-and-shoulders pose.

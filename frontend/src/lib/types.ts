@@ -22,10 +22,17 @@ export interface GenerateFaceResponse {
 
 export interface GenerateBodyResponse {
   message: string;
+  client_id: string;
   height_cm: number;
   age: number;
   front_image_size_bytes: number;
   side_image_size_bytes: number;
+  front_apose_path: string;
+  side_apose_path: string;
+  front_apose_base64: string;
+  side_apose_base64: string;
+  result_path: string;
+  pipeline: Record<string, string>;
 }
 
 export interface HealthResponse {

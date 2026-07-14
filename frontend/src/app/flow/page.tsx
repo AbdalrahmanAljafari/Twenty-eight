@@ -118,6 +118,7 @@ export default function FlowPage() {
 
       {phase === "body" && (
         <BodyPhase
+          clientId={faceResult?.client_id}
           onPreviewsChange={setBodyPreviews}
           onComplete={(result) => {
             setBodyResult(result);

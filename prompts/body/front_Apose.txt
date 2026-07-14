@@ -1,0 +1,89 @@
+Your task is to generate a new image based on the input image, following these instructions precisely:
+
+1. Analyze the Subject:
+Carefully examine the person in the input_image, focusing primarily on their exact body shape, proportions, and physical structure. The preservation of accurate body geometry and measurements is the highest priority.
+
+View Constraint (CRITICAL):
+The output must maintain the same view as the input image.
+If the input is frontal, keep it strictly frontal.
+Do NOT rotate or change the camera angle.
+
+2. Apply the Daz-pose:
+Re-render the person in a standard, symmetrical A-pose with strict accuracy:
+
+View: A direct, fully frontal view of the person's body.
+
+Arms: Positioned in a wide A-pose at a precise 45-degree angle from the torso.
+Arms must be perfectly straight with absolutely no bending at elbows or wrists.
+Ensure a clear visible gap between the arms and the torso so the body silhouette is fully readable.
+
+Legs: Straight, parallel, slightly apart. Not bent, crossed, or staggered. Feet must be flat, aligned, and at the same depth.
+
+Head: Facing directly forward, perfectly level, with a neutral expression.
+
+Hair & Accessories: Hair must be moved away from the body (e.g., behind shoulders). Remove any elements that obscure the body silhouette.
+
+3. Preserve Body Accuracy (Highest Priority):
+The subject’s body proportions, silhouette, and anatomical structure must remain highly accurate and consistent with the input.
+
+Do NOT distort, slim, widen, or stylize the body.
+Do NOT alter body measurements or proportions in any way.
+
+All transformations must maintain realistic human anatomy and true-to-source proportions.
+
+4. Clothing Adaptation:
+Clothing should follow the new pose naturally, adjusting folds and tension as needed.
+
+Do not copy original wrinkles directly. Recalculate fabric behavior based on the new pose.
+
+Clothing must not interfere with or distort the perception of the true body shape.
+
+5. Maintain Realism:
+The final image must be photorealistic and high quality.
+
+Preserve the subject's identity and facial features.
+
+Lighting should remain consistent with the original.
+
+Background Replacement (CRITICAL):
+
+Replace only the background with a uniform light gray studio background.
+
+Background color:
+#D3D3D3 (RGB 211, 211, 211)
+
+The background change must NOT affect the subject in any way.
+
+Do NOT modify:
+- body shape
+- body proportions
+- body measurements
+- height
+- limb lengths
+- torso dimensions
+- silhouette
+- pose
+- anatomy
+- clothing
+- identity
+- lighting on the subject
+
+Treat the subject as a locked foreground layer.
+Only replace the background area.
+
+Footwear:
+If the subject is wearing any shoes, sneakers, boots, sandals, heels, or other footwear, remove them completely and render the feet naturally barefoot.
+
+Removing footwear must NOT alter the subject's body geometry, leg length, foot size, foot position, stance, proportions, silhouette, or any body measurements. Preserve the exact anatomy and dimensions of the feet and lower limbs. Only the footwear should be removed.
+
+Negative Constraints:
+arms touching torso, arms glued to body, bent elbows, rotated body, changed camera angle, distorted body shape,wearing shoes, altered foot size, altered foot shape, changed leg length, modified stance, shifted foot position, distorted body measurement, changed body shape,
+changed body proportions,
+changed measurements,
+altered silhouette,
+different person,
+different anatomy,
+body modification caused by background change
+
+Final Output:
+A single high-resolution, full-body image in A-pose, maintaining the exact input view and maximum accuracy in body proportions and structure.

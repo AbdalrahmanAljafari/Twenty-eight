@@ -25,12 +25,18 @@ const bodySchema = z.object({
 type BodyFormValues = z.infer<typeof bodySchema>;
 
 interface BodyPhaseProps {
+  clientId?: string | null;
   onPreviewsChange: (front: string | null, side: string | null) => void;
   onComplete: (result: GenerateBodyResponse) => void;
   onBack: () => void;
 }
 
-export function BodyPhase({ onPreviewsChange, onComplete, onBack }: BodyPhaseProps) {
+export function BodyPhase({
+  clientId,
+  onPreviewsChange,
+  onComplete,
+  onBack,
+}: BodyPhaseProps) {
   const [step, setStep] = useState(0);
   const [frontImage, setFrontImage] = useState<File | null>(null);
   const [sideImage, setSideImage] = useState<File | null>(null);
@@ -86,6 +92,7 @@ export function BodyPhase({ onPreviewsChange, onComplete, onBack }: BodyPhasePro
       sideImage,
       heightCm: values.heightCm,
       age: values.age,
+      clientId: clientId ?? undefined,
     });
   });
 

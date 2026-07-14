@@ -1,0 +1,260 @@
+Your task is to generate a new image based on the input image, following these instructions precisely:
+
+1. Analyze the Subject:
+
+Carefully examine the person in the input_image, focusing primarily on their exact body shape, proportions, and physical structure.
+
+The preservation of accurate body geometry, proportions, and measurements is the highest priority.
+
+Analyze:
+- Body silhouette from the side profile
+- Shoulder position
+- Chest depth
+- Torso thickness
+- Waist curvature
+- Hip projection
+- Arm length and thickness
+- Leg length and proportions
+- Foot size and position
+- Natural spinal alignment and posture
+
+Do not infer or modify any physical characteristics. Use only the visible information from the input image.
+
+---
+
+2. View Constraint (CRITICAL):
+
+The output must maintain the exact same camera view as the input image.
+
+The input image is a SIDE VIEW.
+
+The final output must remain a strict side profile view.
+
+If the input is:
+- Left-side profile → keep left-side profile.
+- Right-side profile → keep right-side profile.
+
+Do NOT:
+- rotate the body
+- rotate the camera
+- create a frontal view
+- create a three-quarter view
+- change the viewing angle
+- change the perspective
+
+The subject must remain viewed from the exact same side angle as the input.
+
+---
+
+3. Apply the Standard Daz Studio A-Pose:
+
+Re-render the person in the standard Daz Studio A-pose while preserving the exact side profile and body geometry.
+
+Arms:
+- Both arms must be raised symmetrically approximately 45 degrees away from the torso.
+- Arms must remain visible from the side view while maintaining the side silhouette.
+- Arms must be perfectly straight.
+- No bending at elbows.
+- No bending at wrists.
+- Keep a clear separation between arms and torso.
+- Arms must not merge with or hide the body silhouette.
+
+Legs:
+- Legs must remain straight.
+- Legs must be parallel.
+- Feet slightly separated naturally.
+- No crossed legs.
+- No staggered legs.
+- No bent knees.
+- Feet must remain flat on the ground.
+
+Head:
+- Maintain the exact side orientation from the input.
+- Head must remain level.
+- Neutral facial expression.
+- Do not rotate the face toward the camera.
+- Preserve identity and facial structure.
+
+Hair and Accessories:
+- Move hair away from the body silhouette if necessary.
+- Place hair behind shoulders when possible.
+- Remove accessories or objects that hide body boundaries.
+
+---
+
+4. Footwear Removal:
+
+If the subject is wearing any footwear, including:
+- shoes
+- sneakers
+- boots
+- sandals
+- heels
+- slippers
+
+Remove the footwear completely and render the subject barefoot.
+
+IMPORTANT:
+Removing footwear must NOT change:
+- foot size
+- foot shape
+- ankle structure
+- leg length
+- leg proportions
+- stance
+- body measurements
+- side silhouette
+
+Only remove the footwear.
+Do not reconstruct or modify the feet.
+
+---
+
+5. Preserve Body Accuracy (HIGHEST PRIORITY):
+
+The person's body must remain identical to the input image.
+
+Do NOT:
+- slim the body
+- widen the body
+- reshape the body
+- beautify the body
+- change body type
+- alter proportions
+- modify anatomy
+- change muscle definition
+- change fat distribution
+
+Preserve exactly:
+- shoulder position
+- chest depth
+- torso thickness
+- waist curve
+- hip projection
+- arm length
+- arm thickness
+- leg length
+- leg thickness
+- foot dimensions
+- overall side silhouette
+- skeletal proportions
+
+The only allowed transformation is changing the limb pose into the standard Daz Studio A-pose.
+
+---
+
+6. Clothing Adaptation:
+
+Clothing must naturally follow the new pose.
+
+Recalculate:
+- fabric folds
+- fabric tension
+- stretching behavior
+- gravity effects
+
+Do NOT copy original wrinkles directly.
+
+Clothing must not:
+- distort the body shape
+- hide anatomical structure
+- change the perception of measurements
+
+---
+
+7. Realism and Quality:
+
+The final image must be:
+- photorealistic
+- high resolution
+- realistic human anatomy
+
+Preserve:
+- identity
+- facial features
+- skin texture
+- original lighting characteristics
+
+Background:
+Replace only the background with a uniform light gray studio background.
+
+Background color:
+#D3D3D3 (RGB 211, 211, 211)
+
+The background change must NOT affect the subject in any way.
+
+Do NOT modify:
+- body shape
+- body proportions
+- body measurements
+- height
+- limb lengths
+- torso dimensions
+- silhouette
+- pose
+- anatomy
+- clothing
+- identity
+- lighting on the subject
+
+Treat the subject as a locked foreground layer.
+Only replace the background area.
+
+---
+
+Negative Constraints:
+
+changed body shape,
+changed body proportions,
+changed measurements,
+altered silhouette,
+different person,
+different anatomy,
+body modification caused by background change
+rotated body,
+rotated camera,
+front view,
+three-quarter view,
+changed perspective,
+changed side angle,
+twisted torso,
+twisted pelvis,
+altered spine alignment,
+body distortion,
+changed body proportions,
+changed measurements,
+slimmer body,
+wider body,
+longer legs,
+shorter legs,
+modified chest depth,
+modified torso thickness,
+modified waist curve,
+modified hips,
+modified shoulders,
+modified arms,
+modified feet,
+altered foot size,
+altered foot shape,
+changed leg length,
+bent elbows,
+bent wrists,
+arms touching torso,
+arms glued to body,
+hidden arms,
+bent knees,
+crossed legs,
+staggered feet,
+wearing shoes,
+wearing footwear,
+unrealistic anatomy,
+stylized body,
+cartoon appearance
+
+---
+
+Final Output:
+
+A single high-resolution, full-body, photorealistic image of the same person in a standard Daz Studio A-pose.
+
+The output must maintain the exact side profile view, identity, body geometry, proportions, measurements, anatomical structure, posture, and silhouette of the input image with maximum possible accuracy.

@@ -17,6 +17,7 @@ export function useBodyGenerate(options?: UseBodyGenerateOptions) {
       sideImage: File;
       heightCm: number;
       age: number;
+      clientId?: string;
     }) => generateBody(payload),
     onSuccess: options?.onSuccess,
     onError: options?.onError,

@@ -76,6 +76,8 @@ export interface GenerateBodyOptions {
   sideImage: File;
   heightCm: number;
   age: number;
+  clientId?: string;
+  generationProvider?: Provider;
 }
 
 export async function generateBody(
@@ -86,6 +88,13 @@ export async function generateBody(
   formData.append("side_image", options.sideImage);
   formData.append("height_cm", String(options.heightCm));
   formData.append("age", String(options.age));
+
+  if (options.clientId) {
+    formData.append("client_id", options.clientId);
+  }
+  if (options.generationProvider) {
+    formData.append("generation_provider", options.generationProvider);
+  }
 
   return request<GenerateBodyResponse>("/body/generate", {
     method: "POST",

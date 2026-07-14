@@ -1,6 +1,11 @@
+from functools import lru_cache
+
 from fastapi import APIRouter, File, Form, HTTPException, UploadFile
 
+from clients.openrouter import OpenRouterClient
+from config.settings import Provider, get_settings
 from schemas.body import GenerateBodyResponse
+from services.body import BodyService
 
 router = APIRouter(prefix="/body", tags=["body"])
 
@@ -10,12 +15,23 @@ MIN_AGE = 1
 MAX_AGE = 120
 
 
+@lru_cache
+def get_body_service() -> BodyService:
+    settings = get_settings()
+    return BodyService(settings=settings, client=OpenRouterClient(settings))
+
+
 @router.post("/generate", response_model=GenerateBodyResponse)
 async def generate_body(
     front_image: UploadFile = File(..., description="Front body photo"),
     side_image: UploadFile = File(..., description="Side body photo"),
     height_cm: float = Form(..., description="Person height in centimeters"),
     age: int = Form(..., description="Person age in years"),
+    client_id: str | None = Form(
+        None,
+        description="Existing client folder ID (usually from face generation)",
+    ),
+    generation_provider: Provider | None = Form(None),
 ) -> GenerateBodyResponse:
     if not front_image.content_type or not front_image.content_type.startswith("image/"):
         raise HTTPException(status_code=400, detail="front_image must be an image file")
@@ -41,9 +57,18 @@ async def generate_body(
     if not side_bytes:
         raise HTTPException(status_code=400, detail="side_image is empty")
 
-    return GenerateBodyResponse(
-        height_cm=height_cm,
-        age=age,
-        front_image_size_bytes=len(front_bytes),
-        side_image_size_bytes=len(side_bytes),
-    )
+    service = get_body_service()
+
+    try:
+        return await service.generate_body_apose(
+            front_bytes,
+            side_bytes,
+            height_cm=height_cm,
+            age=age,
+            client_id=client_id,
+            generation_provider=generation_provider,
+        )
+    except ValueError as error:
+        raise HTTPException(status_code=400, detail=str(error)) from error
+    except Exception as error:
+        raise HTTPException(status_code=500, detail=str(error)) from error

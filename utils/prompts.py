@@ -41,9 +41,25 @@ def load_input_validation_prompt() -> str:
         config = yaml.safe_load(file)
     prompt_path = config.get("pipeline", {}).get(
         "input_validation_prompt",
-        "prompts/validation/face_input_check.txt",
+        "prompts/face/validation/face_input_check.txt",
     )
     return load_prompt(prompt_path)
+
+
+@lru_cache(maxsize=1)
+def load_body_apose_prompts() -> tuple[str, str]:
+    with MODELS_YAML_PATH.open(encoding="utf-8") as file:
+        config = yaml.safe_load(file)
+    pipeline = config.get("pipeline", {})
+    front_path = pipeline.get(
+        "body_front_apose_prompt",
+        "prompts/body/front_Apose.txt",
+    )
+    side_path = pipeline.get(
+        "body_side_apose_prompt",
+        "prompts/body/side_Apose.txt",
+    )
+    return load_prompt(front_path), load_prompt(side_path)
 
 
 def build_generation_prompt(
