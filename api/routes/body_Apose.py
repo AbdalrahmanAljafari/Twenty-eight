@@ -3,6 +3,7 @@ from functools import lru_cache
 from fastapi import APIRouter, File, Form, HTTPException, UploadFile
 
 from clients.openrouter import OpenRouterClient
+from clients.sapiens import SapiensClient, SapiensError
 from config.settings import Provider, get_settings
 from schemas.body import GenerateBodyResponse
 from services.body import BodyService
@@ -18,7 +19,11 @@ MAX_AGE = 120
 @lru_cache
 def get_body_service() -> BodyService:
     settings = get_settings()
-    return BodyService(settings=settings, client=OpenRouterClient(settings))
+    return BodyService(
+        settings=settings,
+        client=OpenRouterClient(settings),
+        sapiens_client=SapiensClient(settings),
+    )
 
 
 @router.post("/generate", response_model=GenerateBodyResponse)
@@ -32,6 +37,10 @@ async def generate_body(
         description="Existing client folder ID (usually from face generation)",
     ),
     generation_provider: Provider | None = Form(None),
+    run_standardize: bool = Form(
+        True,
+        description="After A-pose, call Sapiens for bbox then crop/scale/canvas",
+    ),
 ) -> GenerateBodyResponse:
     if not front_image.content_type or not front_image.content_type.startswith("image/"):
         raise HTTPException(status_code=400, detail="front_image must be an image file")
@@ -67,7 +76,10 @@ async def generate_body(
             age=age,
             client_id=client_id,
             generation_provider=generation_provider,
+            run_standardize=run_standardize,
         )
+    except SapiensError as error:
+        raise HTTPException(status_code=error.status_code or 502, detail=str(error)) from error
     except ValueError as error:
         raise HTTPException(status_code=400, detail=str(error)) from error
     except Exception as error:

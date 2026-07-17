@@ -116,6 +116,22 @@ class Settings(BaseSettings):
 
     retry_max_attempts: int = Field(3, alias="RETRY_MAX_ATTEMPTS")
 
+    # Sapiens (external segmentation service) + local align pipeline
+    sapiens_base_url: str = Field(
+        "http://localhost:8001",
+        alias="SAPIENS_BASE_URL",
+    )
+    sapiens_segmentation_path: str = Field(
+        "/api/segmentation",
+        alias="SAPIENS_SEGMENTATION_PATH",
+    )
+    align_canvas_size: int = Field(2000, alias="ALIGN_CANVAS_SIZE")
+    align_pixels_per_cm: float = Field(10.0, alias="ALIGN_PIXELS_PER_CM")
+    align_canvas_path: Path = Field(
+        default_factory=lambda: PROJECT_ROOT / "assets" / "standardization-image.png",
+        alias="ALIGN_CANVAS_PATH",
+    )
+
     @field_validator(
         "extraction_provider",
         "generation_provider",
@@ -197,6 +213,13 @@ class Settings(BaseSettings):
             extraction_prompt=extraction_prompt,
             generation_prompt=generation_prompt,
         )
+
+    @property
+    def resolved_align_canvas_path(self) -> Path:
+        path = self.align_canvas_path
+        if path.is_absolute():
+            return path
+        return PROJECT_ROOT / path
 
     @property
     def retry_limit(self) -> int:
