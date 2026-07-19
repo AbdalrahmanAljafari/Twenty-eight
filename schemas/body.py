@@ -45,3 +45,17 @@ class StandardizeBodyResponse(BaseModel):
     result_path: str
     views: dict[str, Any] = Field(default_factory=dict)
     sapiens_bboxes: dict[str, Any] | None = None
+
+
+class VisionBodyResponse(BaseModel):
+    message: str = "Body vision pipeline completed"
+    client_id: str
+    include_matting: bool
+    vision_model: str
+    matting_model: str | None = None
+    front_aligned_path: str
+    side_aligned_path: str
+    result_path: str
+    stages_order: list[str] = Field(default_factory=list)
+    stages: dict[str, Any] = Field(default_factory=dict)
+    files: dict[str, Any] = Field(default_factory=dict)

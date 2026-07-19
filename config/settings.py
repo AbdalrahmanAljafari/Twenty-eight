@@ -125,6 +125,9 @@ class Settings(BaseSettings):
         "/api/segmentation",
         alias="SAPIENS_SEGMENTATION_PATH",
     )
+    sapiens_vision_model: str = Field("0.4b", alias="SAPIENS_VISION_MODEL")
+    sapiens_matting_model: str = Field("1b", alias="SAPIENS_MATTING_MODEL")
+    sapiens_timeout_seconds: float = Field(300.0, alias="SAPIENS_TIMEOUT_SECONDS")
     align_canvas_size: int = Field(2000, alias="ALIGN_CANVAS_SIZE")
     align_pixels_per_cm: float = Field(10.0, alias="ALIGN_PIXELS_PER_CM")
     align_canvas_path: Path = Field(

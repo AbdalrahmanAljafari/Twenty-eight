@@ -9,9 +9,10 @@ from typing import Any
 from clients.openrouter import OpenRouterClient
 from clients.sapiens import SapiensClient
 from config.settings import PROJECT_ROOT, Provider, Settings, get_settings
-from schemas.body import GenerateBodyResponse, StandardizeBodyResponse
+from schemas.body import GenerateBodyResponse, StandardizeBodyResponse, VisionBodyResponse
 from services.body.a_pose import generate_apose_image
 from services.body.standardization import run_standardization
+from services.body.vision import run_vision_pipeline
 from utils.image import to_data_uri
 from utils.prompts import load_body_apose_prompts
 
@@ -302,3 +303,32 @@ class BodyService:
             bboxes_meta = {"front": front_bbox, "side": side_bbox}
 
         return self._build_standardize_response(stored, sapiens_bboxes=bboxes_meta)
+
+    async def run_vision(
+        self,
+        *,
+        client_id: str,
+        include_matting: bool = False,
+        model: str | None = None,
+        matting_model: str | None = None,
+    ) -> VisionBodyResponse:
+        stored = await run_vision_pipeline(
+            client_id=client_id,
+            include_matting=include_matting,
+            model=model,
+            matting_model=matting_model,
+            settings=self.settings,
+            sapiens_client=self.sapiens,
+        )
+        return VisionBodyResponse(
+            client_id=stored["client_id"],
+            include_matting=stored["include_matting"],
+            vision_model=stored["vision_model"],
+            matting_model=stored["matting_model"],
+            front_aligned_path=stored["source"]["front_aligned"],
+            side_aligned_path=stored["source"]["side_aligned"],
+            result_path=stored["result_path"],
+            stages_order=stored["stages_order"],
+            stages=stored["stages"],
+            files=stored["files"],
+        )
