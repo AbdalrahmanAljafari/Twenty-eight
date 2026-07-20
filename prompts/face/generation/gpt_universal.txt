@@ -27,21 +27,34 @@ Preserve the same person with high fidelity:
 - same hair identity unless a separate target style is provided
 The result must clearly look like the same woman, not a different person.
 HAIR PRESERVATION + HAIR COMPLETION / IN-PAINTING
-Preserve the subject's original hair identity:
+Preserve the subject's original hair identity with strict fidelity:
+Preserving hair identity refers to preserving the hairstyle, color, texture, density, hairline, and overall appearance—not the exact position of loose strands covering the face.
 - same hair type
 - same hair color
+- same natural color variations
 - same texture
 - same density
+- same hairline
 - same general hairstyle
-- same apparent length and silhouette unless explicitly changed
-If the uploaded image contains cropped, cut-off, incomplete, truncated, or visually broken hair at the top, sides, or edges of the
-frame, reconstruct and complete the missing hair naturally.
-In-paint and extend the missing hair so the hairstyle looks whole, continuous, anatomically believable, and visually finished.
-Preserve the natural hairline and hair volume.
-Do not leave broken hair edges, flat cutoffs, missing top sections, incomplete bun shapes, or abrupt crop artifacts.
-Hair may naturally frame the outside of the face, but no hair strands or locks may cover any facial features.
-The entire face must remain fully visible and unobstructed. Hair should fall beside the face or behind the ears whenever necessary, without changing the person's recognizable hairstyle.
-Keep the forehead, eyebrows, eyes, nose, lips, cheeks, jawline, and chin readable and visually coherent.
+- same apparent length
+- same overall volume
+- same silhouette and head shape unless explicitly changed
+Replicate the hairstyle accurately while keeping it polished and naturally arranged around the head.
+Remove random flyaway hairs and messy stray strands. Face-obscuring strands must be repositioned outside the face even if they are part of the hairstyle arrangement.
+Do not alter the hairstyle itself, its structure, or its recognizable appearance.
+If the uploaded image contains cropped, cut-off, incomplete, truncated, or visually broken hair at the top, sides, or edges of the frame, reconstruct the missing regions using high-fidelity, logically consistent in-painting.
+Complete the entire hairstyle so the full head appears anatomically correct, continuous, and visually finished.
+This includes reconstructing missing crowns, buns, top hair, side hair, outer silhouette, and any cropped head structure whenever necessary.
+The completed hairstyle must integrate seamlessly with the visible hair, preserving the natural flow, texture, density, lighting, and color consistency.
+Do not introduce new hairstyles, additional volume, or artistic reinterpretations.
+HAIR POSITION CORRECTION:
+Preserve the original hairstyle, but do not preserve the exact position of individual hair strands.
+Any loose strands, bangs, curls, or locks falling into the facial region must be naturally swept, repositioned, or tucked behind the face area without changing the hairstyle identity.
+No individual hair strand may overlap the eyebrows, eyes, nose bridge, cheeks, lips, jawline, or chin.
+The hairstyle identity must be preserved through its overall shape, texture, color, density, length, and silhouette — not by keeping face-obscuring strand placement.
+The final portrait must have a fully visible face with zero hair crossing or covering any facial landmark.
+The forehead, eyebrows, eyes, nose, lips, cheeks, jawline, and chin must remain fully visible, readable, and unobstructed.
+The final portrait must show the complete head and finished hairstyle with no broken edges, abrupt cutoffs, incomplete contours, or visible crop artifacts.
 POSE + GEOMETRIC CORRECTION
 Correct the portrait into a clean, standard head-and-shoulders pose.
 Required pose rules:
@@ -122,6 +135,7 @@ It should look like the subject at her best while remaining faithful to
 her real visible identity.
 FINAL SANITY CHECK BEFORE OUTPUT
 Reject and correct outputs if any of the following happen:
+- any hair strand covers any part of the face
 - the face looks like a different person
 - facial proportions drift too far from the source
 - the pose remains tilted, rotated, or asymmetrical
